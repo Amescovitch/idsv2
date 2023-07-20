@@ -96,7 +96,7 @@ class DemandePermission(models.Model):
     rejeteurs_pour_correction = models.ManyToManyField(Personnel, blank=True, related_name='demandes_rejetees_pour_corrections')
     valide_par = models.ForeignKey(Personnel, on_delete=models.SET_NULL, null=True, blank=True, related_name='demandes_vérifiees')
     date_emission = models.DateTimeField(default=timezone.now)
-    statut = models.CharField(max_length=100, choices=STATUT_CHOICES)
+    statut = models.CharField(max_length=50, choices=STATUT_CHOICES)
 
     NomComplet = models.CharField(max_length=100)
     poste = models.CharField(max_length=100, choices=POSTE_CHOICES)
