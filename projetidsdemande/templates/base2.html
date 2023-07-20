@@ -1,0 +1,452 @@
+{% load static %}
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>accueil</title>
+  <link rel="shortcut icon" type="image/x-icon" href="{% static '/images/favicon.png' %}">
+  <link rel="stylesheet" href="{% static 'css/styles.min.css' %}"/>
+
+    <style>
+    /*style du base2*/
+    body{
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: 1;
+    background-color: darkgray;
+    }
+
+    h1{
+    font-size: 18px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: 1.5;
+    color: #106363;
+    }
+
+    .left-sidebar, .app-header{
+    background: linear-gradient(to bottom right, #298b8b, #298b8b);
+    }
+
+    .ti{
+/*     color: rgb(136, 255, 0); */
+       color: black;
+    }
+
+    .menu-icone{
+    color: white;
+    }
+
+    .notification-icone{
+    color: gold;
+    margin-left: -15px;
+    }
+
+    .notification-icone:hover{
+    color: white;
+    }
+
+    .notification{
+    background-color: red;
+    }
+
+    .utilisateur-connecte{
+    color: gold;
+    font-size: 12px;
+    background-color: rgba(3, 51, 51, 0.1);
+    border-radius: 50px;
+    margin-right: -35px;
+    padding: 0 2px;
+    border-left: solid 1px white;
+    cursor: pointer;
+    }
+
+    .utilisateur-connecte:hover{
+    color: rgb(170, 255, 0);
+    background-color: rgb(3, 3, 80);
+    }
+
+    .haut-ids-demande{
+    color: white;
+    font-weight: bold;
+    letter-spacing: 0.2;
+    }
+
+    .hide-menu{
+    color: white;
+    }
+
+    .message-body, .dropdown-menu, .dropdown-menu-end, .dropdown-menu-animate-up{
+    background-color: rgb(168, 163, 163, 0);
+    }
+
+    .hide-menu-title{
+      color: gold;
+    }
+
+    /*fin style du base2*/
+    /*début style des tableaux*/
+
+    .nbr-total{
+    color: black;
+    margin-top: -10px;
+    }
+
+    table{
+    border: 1px white solid;
+    background: linear-gradient(to bottom right, #0a6d7a, #0a6d7a);
+    }
+
+    th{
+      font-weight: normal;
+    }
+
+    td{
+    border: 1px white solid;
+    border-radius: 5px;
+    }
+
+    thead{
+    text-align: center;
+    background: linear-gradient(to bottom right, gray, gray);
+    text-transform: capitalize;
+    color: white;
+    }
+
+    tbody{
+    color: white;
+    }
+
+    .empty{
+    text-align: center;
+    color: white;
+    background-color: #0a6d7a;
+    letter-spacing: 1.5;
+    padding: 5px 15px;
+    width: fit-content;
+    border-radius: 25px;
+    }
+
+    td > a{
+    color: gold;
+    }
+
+    td > a:hover{
+    color: white;
+    }
+
+    /*fin style des tableaux*/
+    /*début style des formulaires*/
+
+    .formulaire {
+    background: linear-gradient(to bottom right, #0a6d7a, #0a6d7a);
+    border-radius: 10px;
+    padding: 20px 10px;
+    }
+
+    .btn {
+    width: 100%;
+    background-color: #104646;
+    letter-spacing: 1.5;
+    color: white;
+    text-transform: capitalize;
+    }
+
+    .btn:hover {
+    background-color: #298b8b;
+    }
+
+    label{
+    color: white;
+    margin-left: 5px;
+    }
+
+    .form-control{
+    color: black;
+    letter-spacing: 1;
+    padding-left: 5px;
+    background-color: #ebeeee;
+    }
+
+    .form-control:focus{
+    outline: none;
+    color: blue;
+    background-color: white;
+    }
+
+    .form-group{
+    margin-bottom: 20px;
+    }
+
+    .messages {
+    color: white;
+    letter-spacing: 1.5;
+    background-color: #085f6b;
+    border-left: white 1px solid;
+    border-right: white 1px solid;
+    border-radius: 25px;
+    width: fit-content;
+    padding: 5px 10px;
+    text-align: center;
+    }
+
+    .error {
+    color: yellow;
+    }
+
+  /*   .poste_service{
+    color: gold;
+    text-transform: capitalize;
+    } */
+    /*fin stule des tableau*/
+    /* 
+    .username{
+    font-style: italic;
+    }
+    */
+    </style>
+
+</head>
+
+<body>
+  <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <!-- Sidebar Start -->
+    <aside class="left-sidebar">
+      <!-- Sidebar scroll-->
+      <div>
+        <div class="brand-logo d-flex align-items-center justify-content-between">
+          <a href="#" class="text-nowrap logo-img">
+            <img class="logo" src="{% static '/images/idslogo.png' %}" alt="idslogo" width="150" height="75">
+        </a>
+          <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+            <i class="ti ti-x fs-8"></i>
+          </div>
+        </div>
+        <!-- Sidebar navigation-->
+        <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+          <ul id="sidebarnav">
+            {% if user.poste == 'Administrateur' %}
+            <li class="nav-small-cap">
+                <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                <span class="hide-menu hide-menu-title">INSCRIPTION</span>
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="{% url 'applicationidsdemande:inscription' %}" aria-expanded="false">
+                    <span>
+                        <i class="ti ti-user-plus"></i>
+                    </span>
+                    <span class="hide-menu">Créer un personnel</span>
+                </a>
+            </li>
+            {% endif %}
+            {% if user.poste != 'DirecteurGeneral' %}
+            <li class="nav-small-cap">
+                <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                <span class="hide-menu hide-menu-title">INITIER UN PROCESSUS</span>
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="{% url 'applicationidsdemande:demande_permission' %}" aria-expanded="false">
+                    <span>
+                        <i class="ti ti-file-description"></i>
+                    </span>
+                    <span class="hide-menu">Demande de <br> permission</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="#" aria-expanded="false">
+                    <span>
+                        <i class="ti ti-file-description"></i>
+                    </span>
+                    <span class="hide-menu">Demande de congé ou <br> de d'absence</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="#" aria-expanded="false">
+                    <span>
+                        <i class="ti ti-file-description"></i>
+                    </span>
+                    <span class="hide-menu">Demande d'achat</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="#" aria-expanded="false">
+                    <span>
+                        <i class="ti ti-file-description"></i>
+                    </span>
+                    <span class="hide-menu">Bon Pour</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="#" aria-expanded="false">
+                    <span>
+                        <i class="ti ti-file-description"></i>
+                    </span>
+                    <span class="hide-menu">Fiche de mission</span>
+                </a>
+            </li>
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+              <span class="hide-menu hide-menu-title">HISTORIQUE DE MES PROCESSUS INITIÉS</span>
+            </li>
+
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="{% url 'applicationidsdemande:demandes_rejetees_initiateur' %}" aria-expanded="false">
+                  <span>
+                    <i class="ti ti-alert-circle"></i>
+                  </span>
+                  <span class="hide-menu">Mes requêtes rejetées</span>
+                </a>
+              </li>
+              <li class="sidebar-item">
+                <a class="sidebar-link" href="{% url 'applicationidsdemande:demandes_a_corriger_initiateur' %}" aria-expanded="false">
+                  <span>
+                    <i class="ti ti-alert-circle"></i>
+                  </span>
+                  <span class="hide-menu">Mes requêtes à corriger</span>
+                </a>
+              </li>
+              <li class="sidebar-item">
+                <a class="sidebar-link" href="{% url 'applicationidsdemande:demandes_encours_initiateur' %}" aria-expanded="false">
+                  <span>
+                    <i class="ti ti-alert-circle"></i>
+                  </span>
+                  <span class="hide-menu">Mes requêtes en cours</span>
+                </a>
+              </li>
+              <li class="sidebar-item">
+                <a class="sidebar-link" href="{% url 'applicationidsdemande:demandes_validees_initiateur' %}" aria-expanded="false">
+                  <span>
+                    <i class="ti ti-alert-circle"></i>
+                  </span>
+                  <span class="hide-menu">Mes requêtes validées</span>
+                </a>
+              </li>
+              {% endif %}
+              {% if user.poste == 'DirecteurGeneral' or user.poste == 'ServicePersonnel' or user.poste == 'DirecteurDepartement' or user.poste == 'ChefService' %}
+              <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+              <span class="hide-menu hide-menu-title">GESTION DES VALIDATIONS</span>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="{% url 'applicationidsdemande:controle' %}" aria-expanded="false">
+                <span>
+                  <i class="ti ti-aperture"></i>
+                </span>
+                <span class="hide-menu">Demandes en attente <br> de validation</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="{% url 'applicationidsdemande:demandes_validees_validateur' %}" aria-expanded="false">
+                <span>
+                  <i class="ti ti-aperture"></i>
+                </span>
+                <span class="hide-menu">Historique des <br> validations effectuées</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="{% url 'applicationidsdemande:demandes_strictement_rejetees_validateur' %}" aria-expanded="false">
+                <span>
+                  <i class="ti ti-aperture"></i>
+                </span>
+                <span class="hide-menu">Historique des <br> demandes rejetées</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="{% url 'applicationidsdemande:demandes_rejetees_acorriger_validateur' %}" aria-expanded="false">
+                <span>
+                  <i class="ti ti-aperture"></i>
+                </span>
+                <span class="hide-menu">Historique des <br> demandes rejetées <br> pour correction</span>
+              </a>
+            </li>
+            {% endif %}
+          <li class="nav-small-cap">
+            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+            <span class="hide-menu hide-menu-title">RAPPORT DE MES ACTIVITÉS</span>
+          </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="#" aria-expanded="false">
+              <span>
+                <i class="ti ti-article"></i>
+              </span>
+              <span class="hide-menu">Générer le rapport <br>de la semaine</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="#" aria-expanded="false">
+              <span>
+                <i class="ti ti-article"></i>
+              </span>
+              <span class="hide-menu">Générer le rapport <br> du mois</span>
+            </a>
+          </li>
+          </ul>
+        </nav>
+        <!-- End Sidebar navigation -->
+      </div>
+      <!-- End Sidebar scroll-->
+    </aside>
+    <!--  Sidebar End -->
+    <!--  Main wrapper -->
+    <div class="body-wrapper">
+      <!--  Header Start -->
+      <header class="app-header">
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <ul class="navbar-nav">
+            <li class="nav-item d-block d-xl-none">
+              <a class="nav-link sidebartoggler" id="headerCollapse" href="#">
+                <i class="ti ti-menu-2 menu-icone"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'applicationidsdemande:notifications' %}">
+                <i class="ti ti-bell-ringing notification-icone"></i>
+                <div class="notification rounded-circle notification-point"></div>
+                <!--<div class="notification bg-primary rounded-circle notification-point"></div> -->
+              </a>
+            </li>
+          </ul>
+          <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+            <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+              <li class="nav-item dropdown haut-ids-demande">IDS-DEMANDE</li>
+            </ul>
+          </div>
+          <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+            <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+              <li class="nav-item dropdown">
+                <span class="nav-link" href="#" id="drop2" data-bs-toggle="dropdown"
+                  aria-expanded="false"> <span class="utilisateur-connecte">@{{ user.username }}</span>
+                <!-- img src="../assets/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle"> -->
+                </span>
+                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+                  <div class="message-body">
+                   
+                    <a href="{% url 'logout' %}" class="btn btn-outline-primary mx-3 mt-2 d-block">Me déconnecter</a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <!--  Header End -->
+      <div class="container-fluid">
+        
+        {% block content %}
+           
+        {% endblock %}  
+       
+      </div>
+    </div>
+  </div>
+  <script src="{% static 'libs/jquery/dist/jquery.min.js' %}"></script>
+  <script src="{% static 'libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'js/sidebarmenu.js' %}"></script>
+  <script src="{% static 'js/app.min.js' %}"></script>
+  <script src="{% static 'libs/apexcharts/dist/apexcharts.min.js' %}"></script>
+  <script src="{% static 'libs/simplebar/dist/simplebar.js' %}"></script>
+  <script src="{% static 'js/dashboard.js' %}"></script>
+</body>
+
+</html>

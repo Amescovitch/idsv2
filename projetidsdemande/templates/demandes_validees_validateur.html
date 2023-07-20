@@ -1,0 +1,54 @@
+<title>Liste dem. validées validateur</title>
+{% extends 'base2.html' %}
+{% load static %}
+
+    {% block content %}
+
+    <style>
+
+    </style>
+    <div class="text-center">
+        <h1 class="typeservice">Demande de permission</h1>
+        <p class="nbr-total">{{ total_demandes_validees }} validées</p>
+        </div>
+        <div class="table-responsive"> 
+            {% if total_demandes_validees > 0 %}
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Date d'émission</th>
+                  <th scope="col">Initiateur</th>
+                  <th scope="col">Motif</th>
+                  <th scope="col">Statut actuel</th>
+                  <th scope="col">Raison du rejet</th>
+                  <th scope="col">Vérifiée par</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for demande in demandes_validees %}
+                <tr>
+                  <th scope="row" style="font-weight: normal; min-width: 210px;">{{ demande.date_emission }}</th>
+                  <td>{{ demande.initiateur }}</td>
+                  <td>{{ demande.motif }}</td>
+                  <td>{{ demande.statut }}</td>
+                  {% if demande.statut == 'rejetee' or demande.statut == 'a_corriger' %}
+                  <td style="min-width: 200px; text-align: justify;">{{ demande.raison_rejet }}</td>
+                  {% else %}
+                  <td style="text-align: center;">-</td>
+                  {% endif %}
+                  {% if demande.valide_par != None %}
+                  <td><span class="poste_service">{{ demande.valide_par.nom }}, {{ demande.valide_par.prenom }}</span></td>
+                  {% else %}
+                  <td style="text-align: center;">-</td>
+                  {% endif %}
+                </tr>
+                {% endfor %}                    
+              </tbody>
+            </table>
+            {% else %}
+            <p class="empty container"> aucune demande validée</p> 
+            {% endif %}
+          </div>
+    {% endblock %}  
+
+</main>

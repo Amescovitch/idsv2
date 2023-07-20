@@ -1,0 +1,45 @@
+<title>Demande à vérifier:Validateur</title>
+{% extends 'base2.html' %}
+{% load static %}
+
+    <main>
+
+        {% block content %}
+
+        <style>
+
+        </style>
+        <div class="text-center">
+            <h1>Demande de permission</h1>
+            <p class="nbr-total">({{ total_demandes }} validations)</p>
+            </div>
+        <div class="table-responsive"> 
+            {% if total_demandes > 0 %}
+            <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Date d'émission</th>
+                <th scope="col">Initiateur</th>
+                <th scope="col">Motif</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for demande in demandes %}
+            <tr>
+                <th scope="row" style="font-weight: normal; min-width: 210px;">{{ demande.date_emission }}</th>
+                <td>{{ demande.NomComplet }}</td>
+            <td>{{ demande.motif }}</td>
+            <td class="champ-3" style="background-color: gray; text-align: center;"><a href="{% url 'applicationidsdemande:valider_demande' demande.id %}">Vérifier</a></td>
+            </tr>
+            {% endfor %}                    
+            </tbody>
+        </table>
+        {% else %}
+        <div class="empty container">Aucune validation en attente.</div>
+        {% endif %}
+        </div>
+
+        {% endblock %}  
+
+    </main>

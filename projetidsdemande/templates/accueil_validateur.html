@@ -1,0 +1,21 @@
+<title>Accueil Validateur</title>
+{% extends 'base2.html' %}
+{% load static %}
+
+{% block content %}
+
+    <br><br><br><br><br><br><br><div class="container text-center" style="justify-content: center; align-items: center; background-color: #0a6d7a; width: fit-content; padding: 25px; border-radius: 50px;">
+        <p class="texte1" style=" letter-spacing: 1; font-weight: bold; color: gold;">
+        Mr / Mme {{user.nom}} {{user.prenom}}, <br> <span style="font-weight: normal; font-size: 13px; font-style: italic; color: greenyellow;letter-spacing: 1.2;">[ @{{ user.username }} ] <br>[ {{user.poste}} ; {{user.service}} ]</span> 
+        </p>
+
+        <p class="texte2" style="color: white;">
+            <br> Bienvenue sur l'application IDS-DEMANDE.
+        </p>
+
+        <p class="texte2" style="color: white;">
+            <br> Veuillez parcourir le ménu déroulant à gauche pour choisir une action.
+        </p>
+    </div>
+
+{% endblock %}

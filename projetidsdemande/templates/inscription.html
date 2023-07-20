@@ -1,0 +1,162 @@
+<title>Inscription du personnel</title>
+{% extends 'base2.html' %}
+{% load static %}
+
+<main>
+    {% block content %}
+    <style>
+
+    </style>
+
+<div class="text-center">
+    <h1>Inscription</h1>
+</div>
+<form method="post" class="formulaire container">
+    {% csrf_token %}
+
+    {% if messages %}
+    <ul type="none" class="messages container">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|safe }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <div class="row">
+        <div class="col-lg-6 col-12">
+            <div class="form-group">
+                <label for="{{ form.nom.id_for_label }}">Nom</label>
+                {{ form.nom }}
+                {% if form.nom.errors %}
+                <div class="text-danger">
+                    {% for error in form.nom.errors %}
+                    <span class="error">{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-lg-6 col-12">
+            <div class="form-group">
+                <label for="{{ form.prenom.id_for_label }}">Prénom</label>
+                {{ form.prenom }}
+                {% if form.prenom.errors %}
+                <div class="text-danger">
+                    {% for error in form.prenom.errors %}
+                    <span class="error">{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-lg-6 col-12">
+            <div class="form-group">
+                <label for="{{ form.username.id_for_label }}">Username</label>
+                {{ form.username }}
+                {% if form.username.errors %}
+                <div class="text-danger">
+                    {% for error in form.username.errors %}
+                    <span class="error">{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-lg-6 col-12">
+            <div class="form-group">
+                <label for="{{ form.email.id_for_label }}">Email</label>
+                {{ form.email }}
+                {% if form.email.errors %}
+                <div class="text-danger">
+                    {% for error in form.email.errors %}
+                    <span class="error">{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-lg-6 col-12">
+            <div class="form-group">
+                <label for="{{ form.poste.id_for_label }}">Poste</label>
+                {{ form.poste }}
+                {% if form.poste.errors %}
+                <div class="text-danger">
+                    {% for error in form.poste.errors %}
+                    <span class="error">{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-lg-6 col-12">
+            <div class="form-group">
+                <label for="{{ form.service.id_for_label }}">Service</label>
+                {{ form.service }}
+                {% if form.service.errors %}
+                <div class="text-danger">
+                    {% for error in form.service.errors %}
+                    <span class="error">{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-lg-6 col-12">
+            <div class="form-group">
+                <label for="{{ form.direction.id_for_label }}">Direction</label>
+                {{ form.direction }}
+                {% if form.direction.errors %}
+                <div class="text-danger">
+                    {% for error in form.direction.errors %}
+                    <span class="error">{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-lg-6 col-12">
+            <div class="form-group">
+                <label for="{{ form.telephone.id_for_label }}">Téléphone</label>
+                {{ form.telephone }}
+                {% if form.telephone.errors %}
+                <div class="text-danger">
+                    {% for error in form.telephone.errors %}
+                    <span class="error">{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-lg-6 col-12">
+            <div class="form-group">
+                <label for="{{ form.password1.id_for_label }}">Password</label>
+                {{ form.password1 }}
+                {% if form.password1.errors %}
+                <div class="text-danger">
+                    {% for error in form.password1.errors %}
+                    <span class="error">{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-lg-6 col-12">
+            <div class="form-group">
+                <label for="{{ form.password2.id_for_label }}">Confirm Password</label>
+                {{ form.password2 }}
+                {% if form.password2.errors %}
+                <div class="text-danger">
+                    {% for error in form.password2.errors %}
+                    <span class="error">{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Enregistrer</button>
+</form>
+
+{% endblock %}
+
+</main>

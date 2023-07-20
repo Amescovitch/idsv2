@@ -1,0 +1,188 @@
+<title>Vérifier la validité d'une demande</title>
+{% extends 'base2.html' %}
+{% load static %}
+
+<main>
+    {% block content %}
+    <style>
+        
+        .btn-envoi-r,
+        .btn-envoi-v,
+        .btn-envoi-c {
+            height: 40px;
+            color: white;
+            border: none;
+            letter-spacing: 1.5;
+        }
+
+        .btn-envoi-v {
+            background: linear-gradient(to bottom right, rgb(6, 104, 6), rgb(6, 104, 6));
+        }
+
+        .btn-envoi-v:hover {
+            background: linear-gradient(to bottom right, green, green);
+        }
+
+        .btn-envoi-c {
+            background: linear-gradient(to bottom right, rgb(7, 7, 97), rgb(7, 7, 97));
+        }
+
+        .btn-envoi-c:hover {
+            background: linear-gradient(to bottom right, blue, blue);
+        }
+
+        .btn-envoi-r {
+            background: linear-gradient(to bottom right, rgb(156, 5, 5), rgb(156, 5, 5));
+        }
+
+        .btn-envoi-r:hover {
+            background: linear-gradient(to bottom right, red, red);
+        }
+    </style>
+
+    <div class="text-center">
+        <h1>Vérification</h1>
+    </div>
+
+    <form method="post" class="formulaire container">
+        {% csrf_token %}
+
+        <div class="row formulaire-1">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="{{ form.NomComplet.id_for_label }}">Mr / Mme / Mlle</label>
+                    {{ form.NomComplet }}
+                    {% if form.NomComplet.errors %}
+                        <div class="text-danger">
+                            {% for error in form.NomComplet.errors %}
+                                <span class="error">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="{{ form.poste.id_for_label }}">Poste occupé</label>
+                    {{ form.poste }}
+                    {% if form.poste.errors %}
+                        <div class="text-danger">
+                            {% for error in form.poste.errors %}
+                                <span class="error">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="{{ form.service.id_for_label }}">Service relatif</label>
+                    {{ form.service }}
+                    {% if form.service.errors %}
+                        <div class="text-danger">
+                            {% for error in form.service.errors %}
+                                <span class="error">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="{{ form.lieu.id_for_label }}">Lieu à se rendre</label>
+                    {{ form.lieu }}
+                    {% if form.lieu.errors %}
+                        <div class="text-danger">
+                            {% for error in form.lieu.errors %}
+                                <span class="error">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="{{ form.date_heure_sortie.id_for_label }}">Date et heure de sortie</label>
+                    {{ form.date_heure_sortie }}
+                    {% if form.date_heure_sortie.errors %}
+                        <div class="text-danger">
+                            {% for error in form.date_heure_sortie.errors %}
+                                <span class="error">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="{{ form.date_heure_retour.id_for_label }}">Date et heure de retour</label>
+                    {{ form.date_heure_retour }}
+                    {% if form.date_heure_retour.errors %}
+                        <div class="text-danger">
+                            {% for error in form.date_heure_retour.errors %}
+                                <span class="error">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="form-group">
+                <label for="{{ form.motif.id_for_label }}">Motif de la demande</label>
+                {{ form.motif }}
+                {% if form.motif.errors %}
+                    <div class="text-danger">
+                        {% for error in form.motif.errors %}
+                            <span class="error">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="form-group">
+                <label for="{{ form.raison_rejet.id_for_label }}">Raison du rejet</label>
+                {{ form.raison_rejet }}
+                {% if form.raison_rejet.errors %}
+                    <div class="text-danger">
+                        {% for error in form.raison_rejet.errors %}
+                            <span class="error">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="deux-btn row">
+            <div class="col-lg-4 col-md-12 mb-3 mb-md-0">
+                <button class="btn-envoi-v btn btn-primary" type="submit" name="valider">Valider la demande</button>
+            </div>
+            <div class="col-lg-4 col-md-12 mb-3 mb-md-0">
+                <button class="btn-envoi-c btn btn-primary" type="submit" name="a_corriger">Rejeter pour correction</button>
+            </div>
+            <div class="col-lg-4 col-md-12">
+                <button class="btn-envoi-r btn btn-primary" type="submit" name="rejeter">Rejeter la demande</button>
+            </div>
+        </div>
+
+        
+        </form>
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% endblock %}
+</main>

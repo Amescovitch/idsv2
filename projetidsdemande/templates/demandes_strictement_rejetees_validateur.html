@@ -1,0 +1,44 @@
+<title>Liste dem. stri. rej. validateur</title>
+{% extends 'base2.html' %}
+{% load static %}
+
+<main>
+
+    {% block content %}
+
+    <style>
+
+    </style>
+    <div class="text-center">
+        <h1 class="typeservice">Demande de permission</h1>
+        <p class="nbr-total">({{ total_demandes_strictement_rejetees_validateur }} rejets)</p>
+        </div>
+        <div class="table-responsive"> 
+            {% if total_demandes_strictement_rejetees_validateur > 0 %}
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Date d'émission</th>
+                  <th scope="col">Initiateur</th>
+                  <th scope="col">Motif</th>
+                  <th scope="col">Raison du rejet</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for demande in demandes_strictement_rejetees_validateur %}
+                <tr>
+                  <th scope="row" style="font-weight: normal; min-width: 210px;">{{ demande.date_emission }}</th>
+                  <td>@{{ demande.initiateur }}</td>
+                  <td>{{ demande.motif }}</td>
+                  <td style="max-width: 200px; text-align: justify;">{{ demande.raison_rejet }}</td>
+                </tr>
+                {% endfor %}                    
+              </tbody>
+            </table>
+            {% else %}
+            <p class="empty container"> aucune demande rejetée</p> 
+            {% endif %}
+          </div>
+    {% endblock %}  
+
+</main>

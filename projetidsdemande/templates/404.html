@@ -1,0 +1,36 @@
+{% extends 'base2.html' %}
+{% load static %}
+
+    <main>
+
+        {% block content %}
+
+        <style>
+
+        body{
+            background: linear-gradient(to bottom right, white, white);
+        }
+       
+        h1{
+            color: red;
+            margin-top: 15px;
+            letter-spacing: 1.5;
+            text-align: center;
+            margin: 75px 0;
+        }
+
+        p{
+            letter-spacing: 1.5;
+            word-spacing: 2;
+            text-align: center  ;
+        }
+           
+        </style>
+
+        <h1>Erreur 404 !</h1>
+
+        <p>Désolé, la page que vous rechercher n'existe pas.<p>
+           
+        {% endblock %}  
+
+    </main>

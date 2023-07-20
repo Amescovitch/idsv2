@@ -1,0 +1,85 @@
+{% load static %}
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>réinitialisation de mot de passe : 2/4</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{% static '/images/favicon.png' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.min.css' %}"/>
+    <style>
+      body{
+          background-color: rgb(121, 109, 1);
+          letter-spacing: 1;
+      }
+
+      p{
+        color: white;
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+
+      .p2{
+        color: white;
+        text-transform: none;
+        font-weight: normal;
+      }
+  
+      .connexion{
+          background-color: blue;
+          font-weight: normal;
+          border: none;
+          color: white;
+      }
+  
+      .connexion:hover{
+          background-color: rgb(9, 9, 172);
+          border: none;
+          color: white;
+      }
+  
+      .card-body{
+          background: linear-gradient(to bottom right, rgb(167, 21, 21), rgb(167, 21, 21));
+          border-radius: 5px;
+      }
+  
+    </style>
+  
+</head>
+  
+  <body>
+    <!--  Body Wrapper -->
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+      data-sidebar-position="fixed" data-header-position="fixed">
+      <div
+        class="position-relative overflow-hidden radial-gradient min-vh-100 d-flex align-items-center justify-content-center">
+        <div class="d-flex align-items-center justify-content-center w-100">
+          <div class="row justify-content-center w-100">
+            <div class="col-md-8 col-lg-6 col-xxl-3">
+              <div class="card mb-0">
+                <div class="card-body">
+                  <p class="text-center">Erreur de permission</p>
+                  <div class="container">
+                    <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        {% if user.poste == 'Administrateur' %}
+                        <span class="text-center"><a class="connexion btn col-md-12" href="{% url 'applicationidsdemande:accueil_admin' %}">Retour au tableau de bord</a></span>
+                        {% elif user.poste == 'ChefService' or user.poste == 'DirecteurDepartement' or user.poste == 'ServicePersonnel' or user.poste == 'DirecteurGeneral' %}
+                        <span class="text-center"><a class="connexion btn col-md-12" href="{% url 'applicationidsdemande:accueil_validateur' %}">Retour au tableau de bord</a></span>
+                        {% else %}
+                        <span class="text-center"><a class="connexion btn col-md-12" href="{% url 'applicationidsdemande:accueil_personnel' %}">Retour au tableau de bord</a></span>
+                        {% endif %}
+                    </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+              </div>              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="{% static 'libs/jquery/dist/jquery.min.js' %}"></script>
+    <script src="{% static 'libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+  </body>  
+</html>

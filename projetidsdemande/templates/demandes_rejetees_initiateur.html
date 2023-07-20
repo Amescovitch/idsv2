@@ -1,0 +1,46 @@
+<title>Liste demande rej. initiateur</title>
+{% extends 'base2.html' %}
+{% load static %}
+
+<main>
+
+    {% block content %}
+
+    <style>
+        
+    </style>
+    <div class="text-center">
+    <h1 class="typeservice">Demande de permission</h1>
+    <p class="nbr-total">({{ total_demandes_rejetees }} rejets)</p>
+    </div>
+    <div class="table-responsive"> 
+        {% if total_demandes_rejetees > 0 %}
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Date d'émission</th>
+              <th scope="col">Raison du rejet</th>
+              <th scope="col">Rejetée par</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for demande in demandes_rejetees %}
+            <tr>
+              <th scope="row" style="font-weight: normal; min-width: 210px;">{{ demande.date_emission }}</th>
+              <td>{{ demande.raison_rejet }}</td>
+              {% if demande.valide_par != None %}
+              <td><span class="poste_service">{{ demande.valide_par.nom }} {{ demande.valide_par.prenom }}</span></td>
+              {% else %}
+              <td style="text-align: center;">-</td>
+              {% endif %}
+            </tr>
+            {% endfor %}                    
+          </tbody>
+        </table>
+        {% else %}
+        <p class="empty container"> aucun rejet</p> 
+        {% endif %}
+      </div>
+    {% endblock %}  
+
+</main>

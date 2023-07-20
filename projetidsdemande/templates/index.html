@@ -1,0 +1,115 @@
+{% extends 'base1.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    body{
+        background-color: rgb(121, 109, 1);
+    }
+
+    .logo{
+        margin-top: -30px;
+    }
+
+    .ids-demande{
+        color: yellow;
+        word-spacing: 5;
+        letter-spacing: 1.5;
+        font-weight: bold;
+        margin-top: -28px;
+    }
+
+    .ids-demande:hover{
+        color: rgb(170, 255, 0);
+    }
+
+    .card-body{
+        background: linear-gradient(to bottom right, #175e5e, #175e5e);
+        border-radius: 5px;
+    }
+
+    #password, #username{
+        background-color: #ebeeee;
+        color: black;
+        border: none;
+    }
+
+    .form-label{
+        color: white;
+    }
+
+    .resetpassord{
+        color: yellow;
+        margin-top: -30px;
+    }
+
+    .resetpassord:hover{
+        color: rgb(170, 255, 0);
+    }
+
+    .error{
+        color: rgb(255, 187, 0);
+    }
+
+    .slogan-fin{
+        color: white;
+        font-style: italic;
+        font-size: 13px;
+        font-weight: lighter;
+    }
+
+    .connexion{
+        background-color: rgb(5, 5, 107);
+        font-weight: normal;
+        border: none;
+    }
+
+    .connexion:hover{
+        background-color: rgb(4, 4, 63);
+        border: none;
+    }
+    
+  </style>
+
+<div class="card mb-0">
+<div class="card-body">
+    <div href="#" class="text-nowrap logo-img text-center d-block py-3 w-100">
+        <img class="logo" src="{% static '/images/idslogo.png' %}" alt="idslogo" width="200" height="100">
+    </div>
+    <p class="text-center ids-demande">APLLICATION IDS-DEMANDE</p>
+    <form method="post">
+        <div class="mb-3">
+
+        {% csrf_token %}
+        {% if error_message %}
+            <p class="error">{{ error_message }}</p>
+        {% endif %}
+            <label for="username" class="form-label">Nom d'utilisateur</label>
+            <input type="text" id="username" name="username" class="form-control" placeholder="Votre nom d'utilisateur" required>
+            <br>
+            <label for="password" class="form-label">Mot de passe</label>
+            <input type="password" id="password" name="password" class="form-control" placeholder="Votre mot de passe" required>
+            <br><br>
+            <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2 connexion">Se connecter</button>
+
+      </div>
+      
+      <div class="d-flex align-items-center justify-content-between mb-4">
+        <!-- <div class="form-check">
+          <input class="form-check-input primary" type="checkbox" value="" id="flexCheckChecked" checked>
+          <label class="form-check-label text-dark" for="flexCheckChecked">
+            Remeber this Device
+          </label>
+        </div> -->
+        <a href="{% url 'applicationidsdemande:password_reset' %}">
+            <p class="resetpassord"><br> Mot de passe oublié ?</p>
+           </a>
+      </div>
+      <div class="d-flex align-items    -center justify-content-center">
+        <p class="mb-0 fw-light slogan-fin" style="text-align: center;">Dématérialisez vos processus internes avec IDS-Demande.</p>
+        <!-- <a class="text-primary fw-bold ms-2" href="mailto:ameviyovo9@gmail.com">Faites une demande chez l'administrateur</a> -->                  </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}  

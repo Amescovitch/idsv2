@@ -1,0 +1,50 @@
+<title>Liste dem rej. à cor. validateur</title>
+{% extends 'base2.html' %}
+{% load static %}
+
+<main>
+
+    {% block content %}
+
+    <style>
+
+    </style>
+    <div class="text-center">
+        <h1 class="typeservice">Demande de permission</h1>
+        <p class="nbr-total">({{ total_demandes_rejetees_acorriger_validateur }} rejet(s) à corriger)</p>
+        </div>
+        <div class="table-responsive"> 
+            {% if total_demandes_rejetees_acorriger_validateur > 0 %}
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Date d'émission</th>
+                  <th scope="col">Initiateur</th>
+                  <th scope="col">Motif</th>
+                  <th scope="col">Statut actuel</th>
+                  <th scope="col">Motif du rejet</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for demande in demandes_rejetees_acorriger_validateur %}
+                <tr>
+                  <th scope="row" style="font-weight: normal; min-width: 210px;">{{ demande.date_emission }}</th>
+                  <td>{{ demande.initiateur }}</td>
+                  <td>{{ demande.motif }}</td>
+                  <td>{{ demande.statut }}</td>
+                  {% if demande.statut == 'rejetee' or demande.statut == 'a_corriger' %}
+                  <td style="min-width: 200px; text-align: justify;">{{ demande.raison_rejet }}</td>
+                  {% else %}
+                  <td style="text-align: center;">-</td>
+                  {% endif %}
+                </tr>
+                {% endfor %}                    
+              </tbody>
+            </table>
+            {% else %}
+            <p class="empty container"> aucune demande jetetée pour correction</p> 
+            {% endif %}
+          </div>
+    {% endblock %}  
+
+</main>
